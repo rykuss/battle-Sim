@@ -1,5 +1,5 @@
 ﻿  Core.cpp
-c:\users\swood\desktop\battlesimulator1\battlesimulator1\core.cpp(192): warning C4018: '>': signed/unsigned mismatch
-c:\users\swood\desktop\battlesimulator1\battlesimulator1\core.cpp(232): warning C4018: '>': signed/unsigned mismatch
+c:\users\swood\desktop\battlesimulator1\battlesimulator1\core.cpp(191): warning C4018: '>': signed/unsigned mismatch
+c:\users\swood\desktop\battlesimulator1\battlesimulator1\core.cpp(231): warning C4018: '>': signed/unsigned mismatch
   battleSimulator1.vcxproj -> C:\Users\swood\Desktop\battleSimulator1\Debug\battleSimulator1.exe
   battleSimulator1.vcxproj -> C:\Users\swood\Desktop\battleSimulator1\Debug\battleSimulator1.pdb (Partial PDB)

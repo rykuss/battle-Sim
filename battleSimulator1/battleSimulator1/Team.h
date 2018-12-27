@@ -13,4 +13,5 @@ class Team
 	public:
 		Team(string);
 		string getName();
+		void setName(string);
 };

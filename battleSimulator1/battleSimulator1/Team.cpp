@@ -14,3 +14,10 @@ string Team::getName()
 {
 	return name;
 }
+
+void Team::setName(string newName)
+{
+	name = newName;
+
+	return;
+}

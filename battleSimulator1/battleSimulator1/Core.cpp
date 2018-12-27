@@ -9,14 +9,11 @@ using namespace std;
 
 //FUNCTION PROTOTYPES
 void loadingSim();
-int userMenu();
-void addTeam();
-void selectTeam();
-void deleteTeam();
-
-//GLOBAL VARIABLES
-vector<Team> teamList;
-int currentSelectedTeam = -1;
+int userMenu(vector<Team>&, int&);
+void addTeam(vector<Team>&, int&);
+void selectTeam(vector<Team>&, int&);
+void deleteTeam(vector<Team>&, int&);
+void editTeam(vector<Team>&, int&);
 
 
 //CORE PROGRAM
@@ -24,34 +21,36 @@ int main()
 {
 	int choice;
 	bool runningSetup = true;
+	vector<Team> teamList;
+	int currentSelectedTeam = -1;
 
 	while (runningSetup)
 	{
-		choice = userMenu();
+		choice = userMenu(teamList, currentSelectedTeam);
 		switch (choice)
 		{
 			//ADD TEAM
 			case 1:
 			{
-				addTeam();
+				addTeam(teamList, currentSelectedTeam);
 			}
 			break;
 			//SELECT TEAM
 			case 2:
 			{
-				selectTeam();
+				selectTeam(teamList, currentSelectedTeam);
 			}
 			break;
 			//EDIT A TEAM
 			case 3:
 			{
-
+				editTeam(teamList, currentSelectedTeam);
 			}
 			break;
 			//DELETE A TEAM
 			case 4:
 			{
-				deleteTeam();
+				deleteTeam(teamList, currentSelectedTeam);
 			}
 			break;
 			//ADD A UNIT TO CURRENT SELECTED TEAM
@@ -122,7 +121,7 @@ void loadingSim()
 }
 
 
-int userMenu()
+int userMenu(vector<Team>& teamList, int& currentSelectedTeam)
 {
 	string holder;
 	int choice;
@@ -152,7 +151,7 @@ int userMenu()
 }
 
 
-void addTeam()
+void addTeam(vector<Team>& teamList, int& currentSelectedTeam)
 {
 	string nameHolder;
 
@@ -171,7 +170,7 @@ void addTeam()
 }
 
 
-void selectTeam()
+void selectTeam(vector<Team>& teamList, int& currentSelectedTeam)
 {
 	system("CLS");
 	if (teamList.size() > 0)
@@ -210,7 +209,7 @@ void selectTeam()
 }
 
 
-void deleteTeam()
+void deleteTeam(vector<Team>& teamList, int& currentSelectedTeam)
 {
 	system("CLS");
 
@@ -258,4 +257,54 @@ void deleteTeam()
 	loadingSim();
 
 	return;
+}
+
+
+void editTeam(vector<Team>& teamList, int& currentSelectedTeam)
+{
+	string holder; 
+	int decision = -1;
+	bool ableQuit = false;
+
+	system("CLS");
+	cout << "Here are all of the editable characteristics of a faction:\n";
+	cout << "1: Name\n";
+	cout << "\nWhat do you wish to edit? Give Number\n";
+	getline(cin, holder);
+	stringstream hP(holder);
+	hP >> decision;
+
+	while (!ableQuit)
+	{
+		switch (decision)
+			{
+				case 1:
+				{
+					system("CLS");
+					cout << "The faction's current name is: " << teamList[currentSelectedTeam].getName() << endl;
+					cout << "What do you wish to change it to?\n";
+					getline(cin, holder);
+					teamList[currentSelectedTeam].setName(holder);
+					cout << "The faction's new name is now " << teamList[currentSelectedTeam].getName() << "!\n";
+					ableQuit = true;
+				}
+				break;
+				default:
+				{
+					system("CLS");
+					cout << "Invalid input, what do you wish to edit? Give the Number: ";
+					getline(cin, holder);
+					stringstream hP2(holder);
+					hP2 >> decision;
+				}
+			}
+	}
+
+	cout << "Do you wish to edit more features? \"Yes\" or \"No\"\n";
+	getline(cin, holder);
+	if (holder == "Yes")
+	{
+		editTeam(teamList, currentSelectedTeam);
+	}
+	
 }
